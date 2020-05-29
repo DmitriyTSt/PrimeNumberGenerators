@@ -7,7 +7,7 @@ version = '1.0'
 
 sourceCompatibility = 1.8
 
-task fatJar(type: Jar) {
+jar {
     manifest {
         attributes 'Implementation-Title': 'Univer 8 Generators',
                 'Implementation-Version': version,
@@ -15,7 +15,6 @@ task fatJar(type: Jar) {
     }
     baseName = project.name + '-all'
     from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
 }
 
 repositories {
