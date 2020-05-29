@@ -33,11 +33,15 @@ abstract class BaseGenerator(filePath: String?, private val m: BigInteger?) {
         println("Успешная генерация")
     }
 
-    protected fun <T : Number> pushNumber(number: T) {
+    private fun <T : Number> pushNumber(number: T) {
         if (outputFile != null) {
             outputFile?.appendText("$number ")
         } else {
             println(number)
         }
+    }
+
+    protected fun indicateGenerate(current: Int, count: Int) {
+        System.err.println("$current/$count")
     }
 }

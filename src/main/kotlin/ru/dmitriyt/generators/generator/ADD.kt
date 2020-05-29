@@ -25,6 +25,7 @@ class ADD(
             }
             x.add(tempX)
             result.add(tempX)
+            indicateGenerate(i + 1, n)
         }
         return result
     }

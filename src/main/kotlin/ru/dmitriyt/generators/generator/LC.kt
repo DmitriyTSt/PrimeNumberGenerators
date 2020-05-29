@@ -21,6 +21,7 @@ class LC(
         repeat(n) {
             x = (a * x + c) % mm
             result.add(x)
+            indicateGenerate(it + 1, n)
         }
         return result
     }
