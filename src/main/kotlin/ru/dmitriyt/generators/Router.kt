@@ -1,0 +1,59 @@
+package ru.dmitriyt.generators
+
+import ru.dmitriyt.generators.generator.ADD
+import ru.dmitriyt.generators.generator.LC
+
+class Router(private val args: Array<String>) {
+    companion object {
+        private const val DEFAULT_COUNT = 10000
+    }
+
+    fun start() {
+        val arguments = parseArguments()
+        if (arguments.containsKey(ArgsHelper.HELP.code)) {
+            println("Описание параметров")
+            println("/<code>:<value>")
+            ArgsHelper.values().forEach {
+                println("${it.code} ${it.description}")
+            }
+        } else {
+            val generator = when (arguments[ArgsHelper.GENERATOR.code]) {
+                "lc" -> {
+                    LC(
+                        arguments[ArgsHelper.FILE.code],
+                        arguments[ArgsHelper.COUNT.code]?.toInt() ?: DEFAULT_COUNT,
+                        arguments[ArgsHelper.MOD.code]?.toBigInteger(),
+                        arguments[ArgsHelper.I_VECTOR.code]?.split(",")
+                    )
+                }
+                "add" -> {
+                    ADD(
+                        arguments[ArgsHelper.FILE.code],
+                        arguments[ArgsHelper.COUNT.code]?.toInt() ?: DEFAULT_COUNT,
+                        arguments[ArgsHelper.MOD.code]?.toBigInteger(),
+                        arguments[ArgsHelper.I_VECTOR.code]?.split(",")
+                    )
+                }
+                else -> {
+                    println("Неизвестный код генератора")
+                    null
+                }
+            }
+            generator?.generate()
+        }
+    }
+
+    private fun parseArguments(): HashMap<String, String> {
+        val arguments = hashMapOf<String, String>()
+        args.forEach {
+            val divider = it.indexOf(":")
+            if (divider != -1) {
+                arguments[it.substring(1, divider)] = it.substring(divider + 1)
+            } else {
+                arguments[it.substring(1)] = ""
+            }
+
+        }
+        return arguments
+    }
+}
