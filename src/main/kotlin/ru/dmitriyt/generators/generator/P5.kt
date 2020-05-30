@@ -18,14 +18,9 @@ class P5(
         val q2 = i[2].toInt()
         val q3 = i[3].toInt()
         val w = i[4].toInt()
-        var y1p = i[5].toBigInteger()
+        val y1p = i[5].toBigInteger()
         val x = ArrayList<Int>()
-        val tempFirstX = ArrayList<Int>()
-        while (y1p > BigInteger("1")) {
-            tempFirstX.add((y1p % BigInteger("2")).toInt())
-            y1p /= BigInteger("2")
-        }
-        tempFirstX.add((y1p % BigInteger("2")).toInt())
+        val tempFirstX = y1p.toString(2).reversed().map { it - '0' }.toMutableList()
         while (tempFirstX.size < p) {
             tempFirstX.add(0)
         }
