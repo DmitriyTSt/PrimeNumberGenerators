@@ -2,6 +2,7 @@ package ru.dmitriyt.generators
 
 import ru.dmitriyt.generators.generator.ADD
 import ru.dmitriyt.generators.generator.LC
+import ru.dmitriyt.generators.generator.P5
 
 class Router(private val args: Array<String>) {
     companion object {
@@ -28,6 +29,14 @@ class Router(private val args: Array<String>) {
                 }
                 "add" -> {
                     ADD(
+                        arguments[ArgsHelper.FILE.code],
+                        arguments[ArgsHelper.COUNT.code]?.toInt() ?: DEFAULT_COUNT,
+                        arguments[ArgsHelper.MOD.code]?.toBigInteger(),
+                        arguments[ArgsHelper.I_VECTOR.code]?.split(",")
+                    )
+                }
+                "5p" -> {
+                    P5(
                         arguments[ArgsHelper.FILE.code],
                         arguments[ArgsHelper.COUNT.code]?.toInt() ?: DEFAULT_COUNT,
                         arguments[ArgsHelper.MOD.code]?.toBigInteger(),
