@@ -20,11 +20,8 @@ class P5(
         val w = i[4].toInt()
         val y1p = i[5].toBigInteger()
         val x = ArrayList<Int>()
-        val tempFirstX = y1p.toString(2).reversed().map { it - '0' }.toMutableList()
-        while (tempFirstX.size < p) {
-            tempFirstX.add(0)
-        }
-        x.addAll(tempFirstX.reversed())
+        val tempFirstX = toBin(y1p, p)
+        x.addAll(tempFirstX)
         repeat(n) { i ->
             repeat(w) { ss ->
                 x.add((x[i * w + ss + q1]+ x[i * w + ss + q2]+ x[i * w + ss + q3] + x[i * w + ss]) % 2)

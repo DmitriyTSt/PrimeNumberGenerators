@@ -1,9 +1,6 @@
 package ru.dmitriyt.generators
 
-import ru.dmitriyt.generators.generator.ADD
-import ru.dmitriyt.generators.generator.LC
-import ru.dmitriyt.generators.generator.MT
-import ru.dmitriyt.generators.generator.P5
+import ru.dmitriyt.generators.generator.*
 
 class Router(private val args: Array<String>) {
     companion object {
@@ -46,6 +43,14 @@ class Router(private val args: Array<String>) {
                 }
                 "mt" -> {
                     MT(
+                        arguments[ArgsHelper.FILE.code],
+                        arguments[ArgsHelper.COUNT.code]?.toInt() ?: DEFAULT_COUNT,
+                        arguments[ArgsHelper.MOD.code]?.toBigInteger(),
+                        arguments[ArgsHelper.I_VECTOR.code]?.split(",")
+                    )
+                }
+                "rc4" -> {
+                    RC4(
                         arguments[ArgsHelper.FILE.code],
                         arguments[ArgsHelper.COUNT.code]?.toInt() ?: DEFAULT_COUNT,
                         arguments[ArgsHelper.MOD.code]?.toBigInteger(),

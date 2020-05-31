@@ -44,4 +44,16 @@ abstract class BaseGenerator(filePath: String?, private val m: BigInteger?) {
     protected fun indicateGenerate(current: Int, count: Int) {
         System.err.println("$current/$count")
     }
+
+    protected fun toBin(value: BigInteger, size: Int = 0): MutableList<Int> {
+        val ans = value.toString(2).map { it - '0' }.toMutableList()
+        while (ans.size < size) {
+            ans.add(0, 0)
+        }
+        return ans
+    }
+
+    protected fun toDec(x: MutableList<Int>): BigInteger {
+        return x.joinToString("").toBigInteger(2)
+    }
 }

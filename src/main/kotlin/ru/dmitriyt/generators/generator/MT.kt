@@ -56,16 +56,4 @@ class MT(
         }
         return toDec((aBin.subList(0, aBin.size - r) + bBin.subList(bBin.size - r, bBin.size)).toMutableList())
     }
-
-    private fun toBin(value: BigInteger, size: Int = 0): MutableList<Int> {
-        val ans = value.toString(2).map { it - '0' }.toMutableList()
-        while (ans.size < size) {
-            ans.add(0, 0)
-        }
-        return ans
-    }
-
-    private fun toDec(x: MutableList<Int>): BigInteger {
-        return x.joinToString("").toBigInteger(2)
-    }
 }
