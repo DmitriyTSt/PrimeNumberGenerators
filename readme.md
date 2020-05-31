@@ -1,7 +1,7 @@
 # Prime number generator
 Скомпилировать программу для Windows в консоли:
 
-`gradlew.bar jar`
+`gradlew.bat jar`
 
 Скомпилировать программу для Linux в консоли:
 
