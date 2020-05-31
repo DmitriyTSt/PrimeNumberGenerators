@@ -56,4 +56,17 @@ abstract class BaseGenerator(filePath: String?, private val m: BigInteger?) {
     protected fun toDec(x: MutableList<Int>): BigInteger {
         return x.joinToString("").toBigInteger(2)
     }
+
+
+    protected fun String.parseBigInteger(): BigInteger {
+        val xPos = this.indexOf('x')
+        val bPos = this.indexOf('b')
+        return if (xPos == -1 && bPos == -1) {
+            this.toBigInteger()
+        } else if (xPos != -1) {
+            this.substring(2).toBigInteger(16)
+        } else {
+            this.substring(2).toBigInteger(2)
+        }
+    }
 }

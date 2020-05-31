@@ -19,7 +19,7 @@ class LFSR(
         val s = i[3].toInt()
         val x = ArrayList<Int>()
         val tempFirstX = toBin(y1p, p)
-        val aArr = toBin(a, p)
+        val aArr = toBin(a, p).reversed()
         val j = aArr.mapIndexed { index, i -> index to i }.filter { it.second == 1 }.map { it.first }
         val m = j.size
         x.addAll(tempFirstX)
@@ -36,17 +36,5 @@ class LFSR(
             indicateGenerate(i + 1, n)
         }
         return result
-    }
-
-    private fun String.parseBigInteger(): BigInteger {
-        val xPos = this.indexOf('x')
-        val bPos = this.indexOf('b')
-        return if (xPos == -1 && bPos == -1) {
-            this.toBigInteger()
-        } else if (xPos != -1) {
-            this.substring(2).toBigInteger(16)
-        } else {
-            this.substring(2).toBigInteger(2)
-        }
     }
 }
