@@ -43,7 +43,8 @@ class NFSR(
                 }
                 resultStream.add(newX)
             }
-            println(toDec(resultStream))
+            result.add(toDec(resultStream))
+            indicateGenerate(cc + 1, n)
         }
         return result
     }
