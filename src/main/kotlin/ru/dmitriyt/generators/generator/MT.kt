@@ -57,29 +57,15 @@ class MT(
         return toDec((aBin.subList(0, aBin.size - r) + bBin.subList(bBin.size - r, bBin.size)).toMutableList())
     }
 
-    private fun toBin(_value: BigInteger, size: Int = 0): MutableList<Int> {
-        var value = _value
-        val ans = arrayListOf<Int>()
-        while (value > BigInteger("1")) {
-            ans.add((value % BigInteger("2")).toInt())
-            value /= BigInteger("2")
-        }
-        ans.add((value % BigInteger("2")).toInt())
+    private fun toBin(value: BigInteger, size: Int = 0): MutableList<Int> {
+        val ans = value.toString(2).map { it - '0' }.toMutableList()
         while (ans.size < size) {
-            ans.add(0)
+            ans.add(0, 0)
         }
-        return ans.reversed().toMutableList()
+        return ans
     }
 
     private fun toDec(x: MutableList<Int>): BigInteger {
-        var ans = BigInteger("0")
-        var st = BigInteger("1")
-        x.reversed().forEach {
-            if (it == 1) {
-                ans += st
-            }
-            st *= BigInteger("2")
-        }
-        return ans
+        return x.joinToString("").toBigInteger(2)
     }
 }
