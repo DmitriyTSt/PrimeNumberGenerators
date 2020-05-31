@@ -1,4 +1,4 @@
-# Prime number generator
+# Random number generator
 Скомпилировать программу для Windows в консоли:
 
 `gradlew.bat jar`
