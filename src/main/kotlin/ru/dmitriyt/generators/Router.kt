@@ -57,6 +57,14 @@ class Router(private val args: Array<String>) {
                         arguments[ArgsHelper.I_VECTOR.code]?.split(",")
                     )
                 }
+                "rsa" -> {
+                    RSA(
+                        arguments[ArgsHelper.FILE.code],
+                        arguments[ArgsHelper.COUNT.code]?.toInt() ?: DEFAULT_COUNT,
+                        arguments[ArgsHelper.MOD.code]?.toBigInteger(),
+                        arguments[ArgsHelper.I_VECTOR.code]?.split(",")
+                    )
+                }
                 else -> {
                     println("Неизвестный код генератора")
                     null
